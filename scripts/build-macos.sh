@@ -241,11 +241,11 @@ cd $BUILD_PATH
 # fix missing cereal library - cereal is header only and OpenMVG cmake non-release target definitions contain it for some reason
 cat $INSTALL_PATH/share/OpenMVG/cmake/OpenMVGTargets.cmake | sed 's|;cereal||g' > $INSTALL_PATH/share/OpenMVG/cmake/OpenMVGTargets_new.cmake
 mv $INSTALL_PATH/share/OpenMVG/cmake/OpenMVGTargets_new.cmake $INSTALL_PATH/share/OpenMVG/cmake/OpenMVGTargets.cmake
-#
-# #copy easyexif headers
-# echo "Copying easyexif: $INSTALL_PATH/openMVG/third_party/easyexif"
-# mkdir -p $INSTALL_PATH/include/openMVG/third_party/easyexif && cp $BUILD_PATH/openMVG/src/third_party/easyexif/exif.h $INSTALL_PATH/include/openMVG/third_party/easyexif/
-#
+
+# copy easyexif headers
+echo "Copying easyexif: $INSTALL_PATH/openMVG/third_party/easyexif"
+mkdir -p $INSTALL_PATH/include/openMVG/third_party/easyexif && cp $BUILD_PATH/openMVG/src/third_party/easyexif/exif.h $INSTALL_PATH/include/openMVG/third_party/easyexif/
+
 cd $BUILD_PATH
 
 #build libnabo
@@ -298,22 +298,23 @@ $ITR_PATH
 make -j$numproc && make install
 
 comment="# added by itr installer"
-echo "Do you want to add install dir bin and lib, to PATH in ~/.bashrc? Backup of ~/.bashrc will be made. [y/n]"
+echo "Do you want to add install dir bin and lib, to PATH in ~/.zshrc? Backup of ~/.zshrc will be made. [y/n]"
 read -n1 response
 echo ""
 if [ "$response" == "y" ]; then
-	find_comment=$(cat ~/.bashrc | grep "$comment")
+	find_comment=$(cat ~/.zshrc | grep "$comment")
 	if [ "$find_comment" != "$comment" ]; then
-		echo "Backing up ~/.bashrc to $BUILD_PATH/.bashrc_backup"
-		cp ~/.bashrc $BUILD_PATH/.bashrc_backup
+		echo "Backing up ~/.zshrc to $BUILD_PATH/.zshrc_backup"
+		cp ~/.zshrc $BUILD_PATH/.zshrc_backup
 
-		echo "" >> ~/.bashrc
-		echo $comment >> ~/.bashrc
-		echo "export PATH=$INSTALL_PATH/bin:\$PATH" >> ~/.bashrc
-		echo "export LD_LIBRARY_PATH=$INSTALL_PATH/lib:\$LD_LIBRARY_PATH" >> ~/.bashrc
+		echo "" >> ~/.zshrc
+		echo $comment >> ~/.zshrc
+		echo "export PATH=$INSTALL_PATH/bin:\$PATH" >> ~/.zshrc
+		echo "export LD_LIBRARY_PATH=$INSTALL_PATH/lib:\$LD_LIBRARY_PATH" >> ~/.zshrc
+		echo "export DYLD_LIBRARY_PATH=$INSTALL_PATH/lib:\$DYLD_LIBRARY_PATH" >> ~/.zshrc
 
-		echo "Added bin and library paths to ~/.bashrc."
+		echo "Added bin and library paths to ~/.zshrc."
 	else
-		echo "Skipping adding install path to ~/.bashrc, because it is already present."
+		echo "Skipping adding install path to ~/.zshrc, because it is already present."
 	fi
 fi
