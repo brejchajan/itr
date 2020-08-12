@@ -9,7 +9,10 @@ ITR - Immersive Trip Reports
 =============================
 This repository contains the official implementation of the following paper:
 ```
-BREJCHA Jan, LUKÁČ Michal, CHEN Zhili, DIVERDI Stephen a ČADÍK Martin. Immersive Trip Reports. In: Proceedings of the 31st ACM User Interface Software and Technology Symposium. Berlín: Association for Computing Machinery, 2018, s. 389-401. ISBN 978-1-4503-5948-1.
+BREJCHA Jan, LUKÁČ Michal, CHEN Zhili, DIVERDI Stephen a ČADÍK Martin.
+Immersive Trip Reports. In: Proceedings of the 31st ACM User Interface Software
+and Technology Symposium. Berlín: Association for Computing Machinery,
+2018, s. 389-401. ISBN 978-1-4503-5948-1.
 ```
 [Project webpage](http://cphoto.fit.vutbr.cz/immersive-trip-reports/), [Paper (pdf)](http://cphoto.fit.vutbr.cz/immersive-trip-reports/data/immersive_trip_reports.pdf), [Power Point presentation](http://cphoto.fit.vutbr.cz/immersive-trip-reports/data/itr_uist_2018.ppsx).
 
