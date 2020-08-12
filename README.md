@@ -72,8 +72,12 @@ To build `itr`, you will need to install following dependencies. Some dependenci
     -   OSX: ```brew install glog```
 -   ###### LibXML2
 
-    ###### nvm_to_openmv
-        - git clone https://github.com/brejchajan/nvm_to_openmvg
+-   ###### nvm_to_openmvg
+        git clone https://github.com/brejchajan/nvm_to_openmvg
+        cd nvm_to_openmvg && mkdir build && cd build
+        cmake ..
+        make && make install
+
 
 
 Build script
