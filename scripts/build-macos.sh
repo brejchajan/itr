@@ -33,6 +33,12 @@
 # WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
+# By using this script you accept that this script will download,
+# compile, and install thir party software dependencies for the
+# Immersive Trip Reports (ITR) software package. We are not responsible for
+# the third party software downloaded by this script. For respective
+# licensing conditions, please see individual license files within the
+# downloaded software.
 
 
 ITR_PATH=$(pwd)
