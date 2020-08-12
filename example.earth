@@ -1,0 +1,56 @@
+<!--
+@Author: Jan Brejcha <janbrejcha>
+@Email:  brejcha@adobe.com, ibrejcha@fit.vutbr.cz, brejchaja@gmail.com
+@Project: ImmersiveTripReports 2017-2018
+AdobePatentID="P7840-US"
+
+
+Please change your API key to your own MapBox account, this key is for demo purposes only.
+-->
+<?xml version="1.0" ?>
+<map>
+	<version>2</version>
+	<options>
+		<cache type="filesystem">
+			<path>osgearth_cache</path>
+		</cache>
+		<terrain>
+			<skirt_ratio>1</skirt_ratio>
+			<blending>false</blending>
+			<cluster_culling>false</cluster_culling>
+			<color>#ffff00ff</color>
+			<!--<driver>rex</driver>-->
+			<elevation_smoothing>false</elevation_smoothing>
+			<first_lod>0</first_lod>
+			<lighting>true</lighting>
+			<max_lod>16</max_lod>
+			<mercator_fast_path>true</mercator_fast_path>
+			<min_lod>1</min_lod>
+			<min_tile_range_factor>10.0</min_tile_range_factor> <!-- 28 -->
+			<normal_maps>false</normal_maps>
+			<normalize_edges>false</normalize_edges>
+			<tile_size>17</tile_size>
+			<!--<range_mode>DISTANCE_FROM_EYE_POINT</range_mode>-->
+		</terrain>
+	</options>
+
+	<image name="mapbox_satellite" driver="xyz">
+		<url>
+			http://a.tiles.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token=YOUR_MAPBOX_ACCESS_TOKEN
+		</url>
+		<profile>spherical-mercator</profile>
+	</image>
+
+	<!-- EXAMPLE USING LOCAL GEOTIFF SATELLITE IMAGERY
+	<image>
+		<driver>gdal</driver>
+		<name>wallis_sentinel2a</name>
+		<url>
+			/Users/janbrejcha/data/tms_datasets/wallis_sentinel_2A_sentinelhub/wallis_rgb_corrected_byte.tif
+		</url>
+	</image>
+	-->
+	<elevation name="alps_tiles" driver="gdal" max_level = "16" warp_profile="true">
+		<url>../elevation/alps_tiles_merged_tiled.tif</url>
+	</elevation>
+</map>

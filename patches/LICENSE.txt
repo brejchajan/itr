@@ -1,0 +1,6 @@
+This directory is not part of ImmersiveTripReports codebase and contains 
+adapted source code for third party projects, which are separate 
+from Immersive Trip Reports. The third party software needs to be 
+installed and patched by contents of this directory. In each subdirectory, 
+a specific LICENSE file can be found together with a particular license 
+to that subdirectory. 

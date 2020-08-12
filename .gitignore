@@ -1,0 +1,8 @@
+#local cmake configuration file
+CMakeLists.txt.user
+
+CMakeModules/FindEigen3.cmake
+osgearth_cache/*
+
+#macos intermediate files
+.DS_Store
