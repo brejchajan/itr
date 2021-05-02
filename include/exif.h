@@ -45,6 +45,7 @@
 #define EXIF_H
 
 #include <string>
+#include <limits>
 
 #include "third_party/easyexif/exif.h"
 #include "openMVG/exif/exif_IO_EasyExif.hpp"
