@@ -48,12 +48,6 @@ if ((TARGET OpenGL::OpenGL AND TARGET OpenGL::GLX AND TARGET OpenGL::EGL))
     aux_source_directory(${PROJECT_SOURCE_DIR}/src/egl SOURCES)
 endif()
 
-# BOOST
-set(Boost_USE_STATIC_LIBS OFF)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.60 COMPONENTS thread chrono program_options date_time filesystem system regex iostreams REQUIRED)
-
 add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDES})
 
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/nanoflann/include)
@@ -69,6 +63,12 @@ find_package(libpointmatcher 1.2.3 REQUIRED)
 #find_package(Eigen3 QUIET)
 find_package(glog 0.3.5 REQUIRED)
 find_package(LibXML2 REQUIRED)
+
+# BOOST
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+find_package(Boost 1.60 REQUIRED thread chrono program_options date_time filesystem system regex iostreams)
 
 include_directories(${OSGEARTH_INCLUDE_DIR})
 include_directories(${OSG_INCLUDE_DIR})
