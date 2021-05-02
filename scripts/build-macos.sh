@@ -65,7 +65,7 @@ deps_cmd="brew install gdal proj libxml2 coreutils protobuf rocksdb cereal glog"
 echo "Installing dependencies using homebrew.:"
 echo "$deps_cmd"
 # install dependencies
-#$deps_cmd
+$deps_cmd
 
 BUILD_PATH=$(realpath $1)
 INSTALL_PATH=$(realpath $2)
@@ -86,7 +86,6 @@ if [ ! -d "$BUILD_PATH" ]; then
 fi
 
 cd $BUILD_PATH
-
 
 # #build glog
 # git clone https://github.com/google/glog.git
@@ -184,11 +183,10 @@ fi
 
 # download and install eigen
 if [ ! -f "3.3.7.tar.bz2" ]; then
-    curl -LO http://bitbucket.org/eigen/eigen/get/3.3.7.tar.bz2
-    #http://bitbucket.org/eigen/eigen/get/3.2.10.tar.bz2
+    curl -LO https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.bz2
 fi
-tar xvjf 3.3.7.tar.bz2 && cd eigen-eigen-323c052e1731 && \
-EIGEN_DIR=$BUILD_PATH/eigen-eigen-323c052e1731
+tar xvjf eigen-3.3.7.tar.bz2 && cd eigen-3.3.7 && \
+EIGEN_DIR=$BUILD_PATH/eigen-3.3.7
 mkdir -p build && cd build && \
 cmake -DCMAKE_PREFIX_PATH="$INSTALL_PATH;/usr/local/" -DCMAKE_INSTALL_PREFIX="$INSTALL_PATH" -DCMAKE_CXX_FLAGS="-I $INSTALL_PATH/include -L $INSTALL_PATH/lib" .. \
 && make install
@@ -215,14 +213,14 @@ cd $BUILD_PATH
 cd $BUILD_PATH
 git clone --recursive https://github.com/openMVG/openMVG.git
 cd openMVG
-git checkout 35da8f72c68
-cd ..
-git checkout -- src/CMakeLists.txt
-git checkout master
+#git checkout 35da8f72c68
+#cd ..
+#git checkout -- src/CMakeLists.txt
+#git checkout master
 cd $BUILD_PATH
 #echo "Copying patch of CMakeLists.txt for OpenMVG..."
-cp $ITR_PATH/patches/openMVG/CMakeLists.txt openMVG/src/CMakeLists.txt
-cp $ITR_PATH/patches/openMVG/InterfaceMVS.h openMVG/src/software/SfM/export/InterfaceMVS.h
+#cp $ITR_PATH/patches/openMVG/CMakeLists.txt openMVG/src/CMakeLists.txt
+#cp $ITR_PATH/patches/openMVG/InterfaceMVS.h openMVG/src/software/SfM/export/InterfaceMVS.h
 mkdir -p openMVG_Build
 cd openMVG_Build && \
 cmake -DEIGEN_INCLUDE_DIR_HINTS="$EIGEN_DIR" \
@@ -231,6 +229,7 @@ cmake -DEIGEN_INCLUDE_DIR_HINTS="$EIGEN_DIR" \
 -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
 -DMINIGLOG="OFF" \
 -DCMAKE_POLICY_DEFAULT_CMP0100="NEW" \
+-DOpenMVG_USE_OPENMP=OFF \
 -DCeres_DIR="$BUILD_PATH/ceres-solver/build_dir" \
 -DCMAKE_PREFIX_PATH="$INSTALL_PATH" -DCMAKE_INSTALL_PREFIX="$INSTALL_PATH" -DCMAKE_CXX_FLAGS="-I $INSTALL_PATH/include -I $INSTALL_PATH/include/eigen3 -I/usr/local/include -L $INSTALL_PATH/lib -framework Accelerate -lglog -L/usr/local/lib -lgflags" \
 ../openMVG/src && \
